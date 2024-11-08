@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-	signUpRequestSchema,
+	SignUpRequestSchema,
 	TSignUpRequestSchema,
 } from '../validators/signup.schema';
 import { Button, Checkbox, Input, Label } from '@/components';
@@ -16,7 +16,7 @@ export const SignupForm = () => {
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm<TSignUpRequestSchema>({
-		resolver: zodResolver(signUpRequestSchema),
+		resolver: zodResolver(SignUpRequestSchema),
 	});
 
 	const navigate = useNavigate();
@@ -30,7 +30,7 @@ export const SignupForm = () => {
 
 	return (
 		<form
-			className='flex flex-col gap-5 w-full'
+			className='flex flex-col gap-4 w-full'
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Group>

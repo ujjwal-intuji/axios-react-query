@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const signUpRequestSchema = z
+export const SignUpRequestSchema = z
 	.object({
 		reg_no: z.string().min(1, 'Please enter a number'),
 		email: z.string().min(1, 'Please enter your college email').email(),
@@ -12,4 +12,10 @@ export const signUpRequestSchema = z
 		path: ['confirmPassword'],
 	});
 
-export type TSignUpRequestSchema = z.infer<typeof signUpRequestSchema>;
+export const SignUpResponseSchema = z.object({
+	message: z.string(),
+	email: z.string().email(),
+});
+
+export type TSignUpRequestSchema = z.infer<typeof SignUpRequestSchema>;
+export type TSignUpResponseSchema = z.infer<typeof SignUpResponseSchema>;
