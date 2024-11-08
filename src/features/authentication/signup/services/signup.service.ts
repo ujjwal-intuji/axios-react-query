@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
 	SignUpRequestSchema,
 	SignUpResponseSchema,
-} from '../validators/signup.schema';
+} from '../schemas/signup.schema';
 import { api } from '@/utils/api';
 import { API_ENDPOINTS, HTTP_METHODS } from '@/constants';
 

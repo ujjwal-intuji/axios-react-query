@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { handleApiError } from '@/utils';
 import { useUserLogin } from '../hooks/useLogin';
 import { Button, Checkbox, Input, Label } from '@/components';
-import { LoginRequestSchema, TLoginRequestSchema } from '../validators';
+import { LoginRequestSchema, TLoginRequestSchema } from '../schemas';
 
 export const LoginForm = () => {
 	const {

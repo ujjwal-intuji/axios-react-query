@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { AUTH_API } from '../services/auth.service';
-import { TLoginRequestSchema } from '../validators';
+import { TLoginRequestSchema } from '../schemas';
 
 type LoginData = TLoginRequestSchema & { role: string };
 

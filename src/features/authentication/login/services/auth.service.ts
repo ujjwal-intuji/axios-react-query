@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
 	LoginRequestSchema,
 	LoginResponseSchema,
-} from '../validators/login.schema';
+} from '../schemas/login.schema';
 import { api } from '@/utils/api';
 import { API_ENDPOINTS, HTTP_METHODS } from '@/constants';
 

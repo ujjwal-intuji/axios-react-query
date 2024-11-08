@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	SignUpRequestSchema,
 	TSignUpRequestSchema,
-} from '../validators/signup.schema';
+} from '../schemas/signup.schema';
 import { handleApiError } from '@/utils';
 import { INTERNAL_ROUTES } from '@/constants';
 import { useUserSignup } from '../hooks/useSignup';
