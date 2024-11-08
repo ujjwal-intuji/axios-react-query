@@ -31,18 +31,19 @@ export const SignupForm = () => {
 	const { mutate: handleSignup } = useUserSignup();
 
 	async function onSubmit(data: TSignUpRequestSchema) {
-		console.log(data);
-
-		handleSignup(data, {
-			onSuccess: () => {
-				reset();
-				toast.success('Signup Successfull');
-				navigate(INTERNAL_ROUTES.AUTHENTICATION.LOGIN);
+		handleSignup(
+			{ ...data, role: 'USER' },
+			{
+				onSuccess: () => {
+					reset();
+					toast.success('Signup Successfull');
+					navigate(INTERNAL_ROUTES.AUTHENTICATION.LOGIN);
+				},
+				onError: (error) => {
+					toast.error(handleApiError(error));
+				},
 			},
-			onError: (error) => {
-				toast.error(handleApiError(error));
-			},
-		});
+		);
 	}
 
 	return (

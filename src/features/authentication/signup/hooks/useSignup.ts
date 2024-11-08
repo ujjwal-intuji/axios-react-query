@@ -2,10 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { AUTH_API } from '../services/signup.service';
 import { TSignUpRequestSchema } from '../validators/signup.schema';
 
+type SignupData = TSignUpRequestSchema & { role: string };
+
 const useUserSignup = () => {
 	return useMutation({
-		mutationFn: async (signupData: TSignUpRequestSchema) =>
-			AUTH_API.signup(signupData),
+		mutationFn: async (signupData: SignupData) => AUTH_API.signup(signupData),
 	});
 };
 
