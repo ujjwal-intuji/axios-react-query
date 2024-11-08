@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
+import toast from 'react-hot-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
 	SignUpRequestSchema,
 	TSignUpRequestSchema,
 } from '../validators/signup.schema';
+import { handleApiError } from '@/utils';
+import { useUserSignup } from '../hooks/useSignup';
 import { Button, Checkbox, Input, Label } from '@/components';
 
 export const SignupForm = () => {
@@ -23,8 +26,19 @@ export const SignupForm = () => {
 
 	const [isChecked, setIsChecked] = useState(false);
 
+	const { mutate: handleSignup } = useUserSignup();
+
 	async function onSubmit(data: TSignUpRequestSchema) {
 		console.log(data);
+
+		handleSignup(data, {
+			onSuccess: () => {
+				toast.success('Signup Successfull');
+			},
+			onError: (error) => {
+				toast.error(handleApiError(error));
+			},
+		});
 		navigate('/');
 	}
 
