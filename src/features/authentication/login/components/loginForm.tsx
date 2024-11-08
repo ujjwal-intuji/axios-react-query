@@ -1,33 +1,42 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { handleApiError } from '@/utils';
+import { useUserLogin } from '../hooks/useLogin';
 import { Button, Checkbox, Input, Label } from '@/components';
-import { logInSchema, TLogInSchema } from '../validators/login.schema';
-
-type LogInFormT = {
-	email: string;
-	password: string;
-};
+import { LoginRequestSchema, TLoginRequestSchema } from '../validators';
 
 export const LoginForm = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting },
-	} = useForm<TLogInSchema>({
-		resolver: zodResolver(logInSchema),
+		reset,
+		formState: { errors },
+	} = useForm<TLoginRequestSchema>({
+		resolver: zodResolver(LoginRequestSchema),
 	});
-
-	const navigate = useNavigate();
 
 	const [isChecked, setIsChecked] = useState(false);
 
-	async function onSubmit(data: LogInFormT) {
-		console.log(data);
-		navigate('/home');
+	const { mutate: handleLogin, isPending: isLoginLoading } = useUserLogin();
+
+	async function onSubmit(data: TLoginRequestSchema) {
+		handleLogin(
+			{ ...data, role: 'USER' },
+			{
+				onSuccess: () => {
+					toast.success('Welcome to bookshelf 😁');
+				},
+				onError: (error) => {
+					toast.error(handleApiError(error));
+				},
+			},
+		);
+		reset();
 	}
 
 	return (
@@ -58,7 +67,7 @@ export const LoginForm = () => {
 					Forget Password?
 				</Link>
 			</div>
-			<Button type='submit'>{isSubmitting ? 'Logging in...' : 'Login'}</Button>
+			<Button type='submit'>{isLoginLoading ? 'Logging in...' : 'Login'}</Button>
 		</form>
 	);
 };

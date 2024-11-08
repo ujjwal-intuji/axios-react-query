@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
 import { WEBSITE_BASE_CONFIG } from '@/constants';
-import { HTTP_ERROR_CODES } from '@/constants/http-error.constant';
+import { HTTP_ERROR_CODES } from '@/constants/http.constant';
 
 const baseConfig = {
 	withCredentials: true,

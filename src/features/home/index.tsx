@@ -4,8 +4,10 @@ export function Homepage() {
 	return (
 		<section>
 			<div>
-				<h1>Login</h1>
-				<Link to='/login'>Login page</Link>
+				<h1>Available Pages:</h1>
+				<Link to='/login' className='text-blue-600 font-medium'>
+					Login page
+				</Link>
 			</div>
 		</section>
 	);

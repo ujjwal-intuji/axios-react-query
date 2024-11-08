@@ -1,3 +1,2 @@
-export const WEBSITE_BASE_CONFIG = {
-	BACKEND_URL: 'https://jsonplaceholder.typicode.com',
-};
+export * from './url.constant';
+export * from './http.constant';

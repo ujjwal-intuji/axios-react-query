@@ -1,3 +1,11 @@
+export enum HTTP_METHODS {
+	GET = 'GET',
+	PUT = 'PUT',
+	POST = 'POST',
+	PATCH = 'PATCH',
+	DELETE = 'DELETE',
+}
+
 export const HTTP_ERROR_CODES = {
 	BAD_REQUEST: 400,
 	UNAUTHORIZED: 401,
