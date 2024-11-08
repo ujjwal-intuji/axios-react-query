@@ -10,11 +10,13 @@ import {
 	TSignUpRequestSchema,
 } from '../validators/signup.schema';
 import { handleApiError } from '@/utils';
+import { INTERNAL_ROUTES } from '@/constants';
 import { useUserSignup } from '../hooks/useSignup';
 import { Button, Checkbox, Input, Label } from '@/components';
 
 export const SignupForm = () => {
 	const {
+		reset,
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
@@ -33,13 +35,14 @@ export const SignupForm = () => {
 
 		handleSignup(data, {
 			onSuccess: () => {
+				reset();
 				toast.success('Signup Successfull');
+				navigate(INTERNAL_ROUTES.AUTHENTICATION.LOGIN);
 			},
 			onError: (error) => {
 				toast.error(handleApiError(error));
 			},
 		});
-		navigate('/');
 	}
 
 	return (

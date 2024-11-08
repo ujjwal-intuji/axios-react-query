@@ -29,6 +29,7 @@ export const LoginForm = () => {
 			{ ...data, role: 'USER' },
 			{
 				onSuccess: () => {
+					reset();
 					toast.success('Welcome to bookshelf 😁');
 				},
 				onError: (error) => {
@@ -36,7 +37,6 @@ export const LoginForm = () => {
 				},
 			},
 		);
-		reset();
 	}
 
 	return (
