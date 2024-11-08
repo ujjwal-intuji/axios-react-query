@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+
+import { INTERNAL_ROUTES } from '@/constants';
 import { LoginForm } from './components/loginForm';
 
 export function LoginPage() {
@@ -19,15 +21,18 @@ export function LoginPage() {
 					<div className='text-[#4D4D4D] flex gap-1 items-center'>
 						<span className='font-normal text-sm'>New User?</span>
 						<Link
-							to='/signup'
+							to={INTERNAL_ROUTES.AUTHENTICATION.SIGNUP}
 							className='font-normal text-sm underline underline-offset-2'
 						>
 							Register Here
 						</Link>
 					</div>
 					<div className='text-[#4D4D4D]'>
-						<Link to='/signup' className='font-normal text-sm'>
-							Use a Guest
+						<Link
+							to={INTERNAL_ROUTES.AUTHENTICATION.GUEST_LOGIN}
+							className='font-normal text-sm'
+						>
+							Use as a Guest
 						</Link>
 					</div>
 				</div>
